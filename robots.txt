@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Ссылка на карту сайта
+Sitemap: https://aronrashidsh.github.io//sitemap.xml
