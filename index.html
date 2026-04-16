@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главный Архив: Племена и Хроники</title>
+    <style>
+        :root {
+            --желтый: #ffcc00;
+            --черный-фон: #000000;
+            --фон-карточки: #111111;
+            --серый-текст: #bbbbbb;
+            --граница: #333333;
+        }
+
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: var(--черный-фон);
+            color: var(--серый-текст);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background-image: repeating-linear-gradient(45deg, #0a0a0a, #0a0a0a 10px, #000 10px, #000 20px);
+        }
+
+        header {
+            width: 100%;
+            padding: 60px 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-bottom: 5px solid var(--желтый);
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            margin-bottom: 50px;
+        }
+
+        h1 {
+            color: var(--желтый);
+            text-transform: uppercase;
+            font-size: 3em;
+            margin: 0;
+            letter-spacing: 5px;
+            text-shadow: 2px 2px 0px #000;
+        }
+
+        .подзаголовок {
+            color: #fff;
+            font-size: 1.1em;
+            margin-top: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .сетка {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            width: 90%;
+            max-width: 1000px;
+            padding-bottom: 50px;
+        }
+
+        .карточка {
+            background-color: var(--фон-карточки);
+            border: 1px solid var(--граница);
+            padding: 30px;
+            text-decoration: none;
+            color: var(--серый-текст);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .карточка::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 204, 0, 0.1), transparent);
+            transition: 0.5s;
+        }
+
+        .карточка:hover::before {
+            left: 100%;
+        }
+
+        .карточка:hover {
+            transform: translateY(-10px);
+            border-color: var(--желтый);
+            box-shadow: 0 15px 40px rgba(255, 204, 0, 0.2);
+        }
+
+        .карточка h2 {
+            color: var(--желтый);
+            text-transform: uppercase;
+            margin-top: 0;
+            font-size: 1.5em;
+            border-bottom: 1px solid var(--граница);
+            padding-bottom: 10px;
+        }
+
+        .карточка p {
+            font-size: 0.95em;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+
+        .кнопка {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: var(--желтый);
+            color: #000;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 0.8em;
+            text-align: center;
+        }
+
+        .карточка:hover .кнопка {
+            background-color: #fff;
+        }
+
+        .инфо-панель {
+            width: 90%;
+            max-width: 1000px;
+            border: 1px dashed var(--желтый);
+            padding: 20px;
+            margin-bottom: 40px;
+            background: rgba(255, 204, 0, 0.05);
+            font-size: 0.85em;
+            text-align: center;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 30px;
+            color: #444;
+            font-size: 0.8em;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8em; }
+            .сетка { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>ГЛАВНЫЙ АРХИВ</h1>
+    <div class="подзаголовок">Центральное хранилище данных</div>
+</header>
+
+<div class="инфо-панель">
+    ВНИМАНИЕ: Доступ к секретным протоколам ограничен. Выберите интересующий файл для дешифровки.
+</div>
+
+<div class="сетка">
+    <a href="andirka.html" class="карточка">
+        <div>
+            <h2>Хроники Андырки</h2>
+            <p>Полная история становления, предательства и великого воссоединения. От событий 1939 года до инцеста в канаве.</p>
+        </div>
+        <div class="кнопка">Открыть файл</div>
+    </a>
+
+    <a href="sh.html" class="карточка">
+        <div>
+            <h2>Семейство Аронрашидовых</h2>
+            <p>Дополнительные материалы и секретные отчеты, связанные с деятельностью племен и внешних наблюдателей.</p>
+        </div>
+        <div class="кнопка">Открыть файл</div>
+    </a>
+</div>
+
+<footer>
+    © 2026 СИСТЕМА УПРАВЛЕНИЯ ПЛЕМЕНАМИ
+</footer>
+
+</body>
+</html>
