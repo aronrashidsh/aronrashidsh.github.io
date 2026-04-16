@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>AronrashidGames: Sewer Scavenger</title>
+    <style>
+        body { margin: 0; overflow: hidden; background: #000; font-family: 'Courier New', Courier, monospace; user-select: none; }
+        
+        /* Игровой интерфейс */
+        #hud { display: none; position: absolute; top: 20px; left: 20px; color: #0f0; font-size: 24px; text-shadow: 2px 2px #000; pointer-events: none; z-index: 10; }
+        #crosshair { display: none; position: absolute; top: 50%; left: 50%; width: 10px; height: 10px; border: 2px solid white; border-radius: 50%; transform: translate(-50%, -50%); z-index: 10; }
+        #level-indicator { display: none; position: absolute; top: 20px; right: 20px; color: #fff; font-size: 24px; text-shadow: 2px 2px #000; z-index: 10; }
+        
+        /* Меню */
+        .menu-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.85); display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 20; color: white; text-align: center; }
+        .menu-overlay h1 { font-size: 50px; color: #8b5a2b; text-shadow: 0 0 10px #5c3a21; margin-bottom: 10px; }
+        .menu-overlay p { font-size: 20px; margin-bottom: 40px; color: #aaa; }
+        
+        button { background: #5c3a21; color: white; border: 2px solid #8b5a2b; padding: 15px 40px; font-size: 24px; font-family: inherit; cursor: pointer; border-radius: 5px; transition: 0.2s; }
+        button:hover { background: #8b5a2b; transform: scale(1.05); }
+        
+        /* Скрытые элементы по умолчанию */
+        #next-level-menu, #win-menu { display: none; }
+    </style>
+</head>
+<body>
+
+    <div id="hud">Собрано: <span id="score">0</span> / <span id="target">0</span></div>
+    <div id="level-indicator">Уровень: <span id="current-level-text">1</span></div>
+    <div id="crosshair"></div>
+
+    <div id="main-menu" class="menu-overlay">
+        <h1>AronrashidGames</h1>
+        <p>Канализационный Сталкер<br>WASD — Ходить | Мышь — Осмотреться</p>
+        <button id="play-btn">ИГРАТЬ</button>
+    </div>
+
+    <div id="next-level-menu" class="menu-overlay">
+        <h1>Уровень пройден!</h1>
+        <p>Трубы становятся глубже...</p>
+        <button id="next-btn">СЛЕДУЮЩИЙ УРОВЕНЬ</button>
+    </div>
+
+    <div id="win-menu" class="menu-overlay">
+        <h1>ПОБЕДА!</h1>
+        <p>Ты очистил всю канализацию!</p>
+        <button id="restart-btn">ИГРАТЬ ЗАНОВО</button>
+    </div>
+
+    <script type="importmap">
+        { "imports": { "three": "https://unpkg.com/three@0.160.0/build/three.module.js" } }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+
+        // --- Настройки уровней ---
+        const levels = [
+            { id: 1, items: 5, length: 100, fogColor: 0x0a0a0a, wallColor: 0x333333 }, // 1: Обычная труба
+            { id: 2, items: 15, length: 200, fogColor: 0x1a0505, wallColor: 0x4a2a2a }, // 2: Ржавая труба, больше объектов
+            { id: 3, items: 30, length: 300, fogColor: 0x051a05, wallColor: 0x1a331a }  // 3: Токсичная зеленая труба
+        ];
+        
+        let currentLevelIndex = 0;
+        let score = 0;
+        let isPlaying = false;
+        let itemsArray = [];
+        let tunnelMesh;
+
+        // --- Инициализация сцены ---
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        // Фонарик
+        const flashlight = new THREE.SpotLight(0xffffff, 50);
+        flashlight.angle = Math.PI / 5;
+        flashlight.penumbra = 0.5;
+        flashlight.distance = 25;
+        camera.add(flashlight);
+        flashlight.position.set(0, 0, 1);
+        flashlight.target = camera; 
+        scene.add(camera);
+
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.1);
+        scene.add(ambientLight);
+
+        // --- Функции уровней ---
+        function loadLevel(index) {
+            const levelData = levels[index];
+            score = 0;
+            
+            // Обновляем UI
+            document.getElementById('score').innerText = score;
+            document.getElementById('target').innerText = levelData.items;
+            document.getElementById('current-level-text').innerText = levelData.id;
+
+            // Настройка тумана
+            scene.fog = new THREE.FogExp2(levelData.fogColor, 0.12);
+            renderer.setClearColor(levelData.fogColor);
+
+            // Удаляем старую трубу и объекты
+            if (tunnelMesh) scene.remove(tunnelMesh);
+            itemsArray.forEach(item => scene.remove(item));
+            itemsArray = [];
+
+            // Создаем новую трубу
+            const tunnelGeom = new THREE.CylinderGeometry(5, 5, levelData.length, 16, 1, true);
+            const tunnelMat = new THREE.MeshStandardMaterial({ color: levelData.wallColor, side: THREE.BackSide, roughness: 0.9 });
+            tunnelMesh = new THREE.Mesh(tunnelGeom, tunnelMat);
+            tunnelMesh.rotation.x = Math.PI / 2;
+            tunnelMesh.position.z = -levelData.length / 2 + 10; // Смещаем трубу вперед
+            scene.add(tunnelMesh);
+
+            // Генерация объектов
+            const itemGeo = new THREE.SphereGeometry(0.25, 8, 8);
+            const itemMat = new THREE.MeshStandardMaterial({ color: 0x5c3a21, roughness: 1 });
+
+            for(let i = 0; i < levelData.items; i++) {
+                const item = new THREE.Mesh(itemGeo, itemMat);
+                const angle = Math.random() * Math.PI * 2;
+                const radius = 4.5; 
+                item.position.x = Math.cos(angle) * radius;
+                item.position.y = Math.sin(angle) * radius;
+                // Распределяем по длине трубы
+                item.position.z = -(Math.random() * (levelData.length - 20)); 
+                scene.add(item);
+                itemsArray.push(item);
+            }
+
+            // Сброс камеры
+            camera.position.set(0, 0, 0);
+            camera.rotation.set(0, 0, 0);
+        }
+
+        function checkLevelComplete() {
+            if (score >= levels[currentLevelIndex].items) {
+                document.exitPointerLock(); // Выходим из режима управления
+                isPlaying = false;
+                
+                if (currentLevelIndex < levels.length - 1) {
+                    document.getElementById('next-level-menu').style.display = 'flex';
+                } else {
+                    document.getElementById('win-menu').style.display = 'flex';
+                }
+            }
+        }
+
+        // --- Управление UI и Состояниями ---
+        const btnPlay = document.getElementById('play-btn');
+        const btnNext = document.getElementById('next-btn');
+        const btnRestart = document.getElementById('restart-btn');
+        
+        function startGame() {
+            document.querySelectorAll('.menu-overlay').forEach(el => el.style.display = 'none');
+            document.body.requestPointerLock();
+        }
+
+        btnPlay.addEventListener('click', () => {
+            currentLevelIndex = 0;
+            loadLevel(currentLevelIndex);
+            startGame();
+        });
+
+        btnNext.addEventListener('click', () => {
+            currentLevelIndex++;
+            loadLevel(currentLevelIndex);
+            startGame();
+        });
+
+        btnRestart.addEventListener('click', () => {
+            currentLevelIndex = 0;
+            loadLevel(currentLevelIndex);
+            startGame();
+        });
+
+        // Отслеживание захвата мыши
+        document.addEventListener('pointerlockchange', () => {
+            if (document.pointerLockElement === document.body) {
+                isPlaying = true;
+                document.getElementById('hud').style.display = 'block';
+                document.getElementById('crosshair').style.display = 'block';
+                document.getElementById('level-indicator').style.display = 'block';
+            } else {
+                isPlaying = false;
+                document.getElementById('hud').style.display = 'none';
+                document.getElementById('crosshair').style.display = 'none';
+                document.getElementById('level-indicator').style.display = 'none';
+                // Если не прошли уровень, показываем главное меню (Пауза)
+                if (score < levels[currentLevelIndex].items) {
+                    document.getElementById('main-menu').style.display = 'flex';
+                    document.getElementById('main-menu').querySelector('h1').innerText = 'ПАУЗА';
+                    document.getElementById('play-btn').innerText = 'ПРОДОЛЖИТЬ';
+                }
+            }
+        });
+
+        // --- Движение ---
+        const keys = {};
+        document.addEventListener('keydown', (e) => keys[e.code] = true);
+        document.addEventListener('keyup', (e) => keys[e.code] = false);
+
+        document.addEventListener('mousemove', (e) => {
+            if (isPlaying) {
+                camera.rotation.y -= e.movementX * 0.002;
+                camera.rotation.x -= e.movementY * 0.002;
+                camera.rotation.x = Math.max(-Math.PI/2, Math.min(Math.PI/2, camera.rotation.x));
+            }
+        });
+
+        // --- Игровой цикл ---
+        function animate() {
+            requestAnimationFrame(animate);
+
+            if (isPlaying) {
+                const speed = 0.15;
+                if (keys['KeyW']) camera.translateZ(-speed);
+                if (keys['KeyS']) camera.translateZ(speed);
+                if (keys['KeyA']) camera.translateX(-speed);
+                if (keys['KeyD']) camera.translateX(speed);
+
+                // Ограничение игрока внутри трубы
+                const dist = Math.sqrt(camera.position.x**2 + camera.position.y**2);
+                if (dist > 4.0) {
+                    camera.position.x *= 0.95;
+                    camera.position.y *= 0.95;
+                }
+                
+                // Ограничение выхода за пределы трубы по Z
+                if (camera.position.z > 5) camera.position.z = 5;
+                if (camera.position.z < -levels[currentLevelIndex].length + 5) {
+                    camera.position.z = -levels[currentLevelIndex].length + 5;
+                }
+
+                // Сбор объектов
+                itemsArray.forEach((item) => {
+                    if (item.visible && camera.position.distanceTo(item.position) < 1.2) {
+                        item.visible = false;
+                        score++;
+                        document.getElementById('score').innerText = score;
+                        flashlight.intensity = 150; // Моргание фонарика
+                        setTimeout(() => flashlight.intensity = 50, 100);
+                        checkLevelComplete();
+                    }
+                });
+            }
+
+            renderer.render(scene, camera);
+        }
+
+        loadLevel(0); // Предзагрузка первого уровня для фона меню
+        animate();
+
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+    </script>
+</body>
+</html>
