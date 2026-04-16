@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Хроники Андырки и Аронрашида</title>
+    <style>
+        :root {
+            --yellow: #ffcc00; /* Яркий желтый */
+            --dark-bg: #000000;
+            --card-bg: #111111;
+            --text-gray: #bbbbbb;
+            --border: #333333;
+        }
+
+        body {
+            font-family: 'Consolas', 'Monaco', monospace; /* Моноширинный шрифт для стиля "досье" */
+            background-color: var(--dark-bg);
+            color: var(--text-gray);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-image: repeating-linear-gradient(
+                45deg,
+                #0a0a0a,
+                #0a0a0a 10px,
+                #000000 10px,
+                #000000 20px
+            );
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 40px auto;
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-top: 5px solid var(--yellow); /* Желтая полоса сверху */
+            border-left: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.9);
+        }
+
+        h1 {
+            color: var(--yellow);
+            text-align: left;
+            text-transform: uppercase;
+            font-size: 2.2em;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+            border-bottom: 1px solid var(--yellow);
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            color: var(--yellow);
+            background-color: rgba(255, 204, 0, 0.1);
+            padding: 10px;
+            border-left: 4px solid var(--yellow);
+            font-size: 1.4em;
+            text-transform: uppercase;
+        }
+
+        .date {
+            color: var(--dark-bg);
+            background-color: var(--yellow);
+            padding: 2px 6px;
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .highlight {
+            color: #ffffff;
+            font-weight: bold;
+            border-bottom: 1px dotted var(--yellow);
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-size: 1.05em;
+        }
+
+        .quote {
+            background: #1a1a1a;
+            color: #fff;
+            padding: 20px;
+            border: 1px dashed var(--yellow);
+            position: relative;
+            margin: 30px 0;
+        }
+
+        .quote::before {
+            content: "CAUTION";
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background: var(--yellow);
+            color: #000;
+            font-size: 0.7em;
+            padding: 0 5px;
+            font-weight: bold;
+        }
+
+        .image-container {
+            text-align: center;
+            margin: 40px 0;
+            border: 2px solid var(--yellow);
+            background: #000;
+            padding: 10px;
+        }
+
+        .story-image {
+            max-width: 100%;
+            height: auto;
+            filter: grayscale(0.2) contrast(1.1); /* Стилизация фото */
+        }
+
+        .img-caption {
+            color: var(--yellow);
+            font-size: 0.8em;
+            margin-top: 10px;
+            text-transform: uppercase;
+        }
+
+        hr {
+            border: 0;
+            height: 2px;
+            background: repeating-linear-gradient(
+                90deg,
+                var(--yellow),
+                var(--yellow) 10px,
+                transparent 10px,
+                transparent 20px
+            );
+            margin: 40px 0;
+        }
+
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 0.8em;
+            color: #444;
+            letter-spacing: 1px;
+        }
+
+        /* Кастомный скроллбар в стиле */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: var(--yellow); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Полная Хроника Андырки</h1>
+
+    <h2>Часть I: Великое Предательство</h2>
+    <p>
+        <span class="date">01.09.1939</span> В этот мрачный день на свет появился <span class="highlight">Андырка</span>. Судьба быстро вознесла его на вершину: он стал временно исполняющим обязанности <span class="highlight">аронрашида</span>. 
+    </p>
+    <p>
+        Всё изменилось <span class="date">11.09.2001</span>. Андырка разработал чудовищный план. В тот день Аскар погиб, а Андырка прибрал к рукам его племя. 
+    </p>
+
+    <h2>Часть II: Перерождение</h2>
+    <p>
+        В <span class="date">2012 году</span> мир содрогнулся. Аскар восстал из пепла в Нигерии. В то же время аронрашид принял Андырку в свое привилегированное семейство.
+    </p>
+    <div class="quote">
+        Обида Андырки не знала границ. Ночью он пробрался к канаве Аскара и совершил акт возмездия — <strong>насрал ему прямо в карман</strong>.
+    </div>
+
+    <hr>
+
+    <h2>Часть III: Рада и Золотой Век</h2>
+    <p>
+        Оставшись без влияния, Андырка нашел свою любовь — <span class="highlight">Раду</span>.
+    </p>
+    
+    <div class="image-container">
+        <img src="dr.jpg" alt="Объект: Рада и Андырка" class="story-image">
+        <div class="img-caption">Файл: dr.jpg | Статус: Зафиксировано</div>
+    </div>
+
+    <p>
+        Время шло, их чувства крепли. Племя аронрашида процветало, внедряя знаменитые <span class="highlight">«анальные идеи»</span> для продвижения семейства.
+    </p>
+
+    <h2>Часть IV: Изгнание</h2>
+    <p>
+        Аронрашид застал Раду верхом на Андырке. Не в силах сдерживать порыв, он инициировал тройничок. Вскоре ситуация перевернулась, и в гневе аронрашид <strong>нахер выгнал Андырку</strong>.
+    </p>
+
+    <h2>Финал: Сила Связи</h2>
+    <p>
+        Используя мистическую <span class="highlight">анальную связь</span>, Андырка выследил Раду. Они помирились и, вопреки всему, обрели свое странное счастье.
+    </p>
+
+    <footer>
+        &copy; 2026 ARCHIVE_FILE_B_P | AUTHENTIC ENGLISH CONTENT ENABLED
+    </footer>
+</div>
+
+</body>
+</html>
