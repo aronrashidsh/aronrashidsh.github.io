@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Хроники Андырки и Аронрашида</title>
+    <style>
+        :root {
+            --yellow: #ffcc00;
+            --dark-bg: #000000;
+            --card-bg: #111111;
+            --text-gray: #bbbbbb;
+            --border: #333333;
+        }
+
+        /* Экрана загрузки / Connection Overlay */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            color: var(--yellow);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            font-family: 'Consolas', monospace;
+            transition: opacity 0.5s ease, visibility 0.5s;
+        }
+
+        .loader-text {
+            font-size: 1.2em;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .blink {
+            animation: blinker 1s linear infinite;
+        }
+
+        @keyframes blinker {
+            50% { opacity: 0; }
+        }
+
+        body {
+            font-family: 'Consolas', 'Monaco', monospace;
+            background-color: var(--dark-bg);
+            color: var(--text-gray);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-image: repeating-linear-gradient(45deg, #0a0a0a, #0a0a0a 10px, #000 10px, #000 20px);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-top: 5px solid var(--yellow);
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.9);
+        }
+
+        h1 {
+            color: var(--yellow);
+            text-transform: uppercase;
+            font-size: 2em;
+            border-bottom: 2px solid var(--yellow);
+            padding-bottom: 10px;
+            text-align: center;
+        }
+
+        h2 {
+            color: var(--yellow);
+            border-left: 4px solid var(--yellow);
+            padding-left: 15px;
+            text-transform: uppercase;
+            font-size: 1.3em;
+            margin-top: 30px;
+        }
+
+        .date {
+            color: var(--dark-bg);
+            background-color: var(--yellow);
+            padding: 2px 5px;
+            font-weight: bold;
+        }
+
+        .highlight {
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .quote {
+            background: #1a1a1a;
+            padding: 20px;
+            border: 1px dashed var(--yellow);
+            margin: 25px 0;
+            font-style: italic;
+        }
+
+        .image-box {
+            text-align: center;
+            margin: 30px 0;
+            border: 2px solid var(--yellow);
+            padding: 5px;
+            background: #000;
+        }
+
+        .image-box img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.8em;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<div id="loading-screen">
+    <div class="loader-text">ESTABLISHING CONNECTION TO THE HOLE...</div>
+    <div style="color: #fff;">[ <span class="blink">STATUS: ACCESSING DEEP DATA</span> ]</div>
+</div>
+
+<div class="container">
+    <h1>Полная Хроника Андырки</h1>
+
+    <h2>Часть I: Великое Предательство</h2>
+    <p>
+        <span class="date">1 сентября 1939 года</span> — в этот мрачный день на свет появился <span class="highlight">Андырка</span>. Судьба быстро вознесла его на вершину: он стал временно исполняющим обязанности <span class="highlight">аронрашида</span>. Справлялся он неплохо, но его жизнь омрачал затяжной конфликт с Аскаром, вечно подогреваемый Даниялом.
+    </p>
+    <p>
+        Всё изменилось <span class="date">11 сентября 2001 года</span>. Андырка разработал чудовищный план. В тот день Аскар, будучи пилотом самолета, погиб, а Андырка прибрал к рукам его племя. Казалось, победа была окончательной.
+    </p>
+
+    <h2>Часть II: Перерождение и Карма</h2>
+    <p>
+        В <span class="date">2012 году</span> мир содрогнулся от великих перерождений. Аскар восстал из пепла в Нигерии и вернул свое племя. В то же время переродился и сам аронрашид, приняв Андырку в свое привилегированное «семейство аронрашидовых». 
+    </p>
+    <div class="quote">
+        Обида Андырки не знала границ. Ночью он пробрался к канаве Аскара, нашел спящего врага и совершил акт возмездия — <strong>насрал ему прямо в карман</strong>. Даниял же предпочел остаться в племени Аскара.
+    </div>
+
+    <h2>Часть III: Рада и Золотой Век Аронрашида</h2>
+    <p>
+        Оставшись без влияния в племени Аскара, Андырка нашел свою любовь — <span class="highlight">Раду</span>.
+    </p>
+
+    <div class="image-box">
+        <img src="dr.jpg" alt="Андырка и Рада">
+        <p style="color: var(--yellow); font-size: 0.7em; margin-top: 5px;">DATA_VISUAL: DR.JPG</p>
+    </div>
+
+    <p>
+        Время шло, их чувства крепли, а Андырка занял в иерархии аронрашидовых место гораздо выше прежнего. Племя аронрашида процветало, в то время как люди Аскара жили как бомжи.
+    </p>
+    <p>
+        Аронрашид проявил себя как гениальный диктатор. Он внедрил систему размножения и свои знаменитые <span class="highlight">«анальные идеи»</span> для продвижения семейства. Однажды утром он даже насрал в рот спящему Андырке, пока Аскар где-то вдалеке медленно и тихо пытался возродить величие своего племени.
+    </p>
+
+    <h2>Часть IV: Тройничок и Изгнание</h2>
+    <p>
+        Гром грянул внезапно. Аронрашид зашел в подвал и увидел Раду верхом на Андырке. Не в силах сдерживать порыв, он инициировал тройничок. Рада была в ужасе, но Андырку всё устраивало. Вскоре ситуация перевернулась: Рада в слезах наблюдала, как Андырка уже сам скакал верхом на аронрашиде.
+    </p>
+    <p>
+        Не выдержав позора, Рада убежала в темноту ночи. Аронрашид, осознав, что под ним не возлюбленная, а всего лишь «дырка Андырки», в гневе и горе <strong>нахер выгнал Андырку</strong> из своего семейства.
+    </p>
+
+    <h2>Финал: Сила Связи</h2>
+    <p>
+        Лишившись всего, Андырка не сдался. Используя свою мистическую <span class="highlight">анальную связь</span>, он смог выследить Раду в ночи. Они помирились и начали страстно сосаться, обретя свое странное, но искреннее счастье.
+    </p>
+
+    <footer>
+        &copy; 2026 Архив Безумных Племен. Keep it real.
+    </footer>
+</div>
+
+<script>
+    // Скрипт отключения загрузки через 3 секунды
+    window.addEventListener('load', function() {
+        setTimeout(function() {
+            const loader = document.getElementById('loading-screen');
+            loader.style.opacity = '0';
+            loader.style.visibility = 'hidden';
+        }, 3000); // 3000 ms = 3 seconds
+    });
+</script>
+
+</body>
+</html>
