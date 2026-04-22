@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>404 - СЕТЬ ДЫРОК: ОШИБКА</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #ffcc00;
+            font-family: "Courier New", Courier, monospace;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        /* Экран загрузки (подключение) */
+        #loading-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #332200;
+            border-top: 5px solid #ffcc00;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Экран ошибки 404 */
+        #error-screen {
+            display: none;
+            max-width: 600px;
+            padding: 20px;
+            border: 2px solid #ffcc00;
+            background: #0a0a00;
+            box-shadow: 0 0 15px #ffcc00;
+        }
+
+        .error-code {
+            font-size: 5em;
+            font-weight: bold;
+            margin: 0;
+            text-shadow: 3px 3px #f00;
+        }
+
+        .glitch {
+            animation: glitch 1s linear infinite;
+        }
+
+        @keyframes glitch {
+            2% { transform: translate(2px, 0) skew(0deg); }
+            4% { transform: translate(-2px, 0) skew(0deg); }
+            6% { transform: translate(0, 0) skew(5deg); }
+            100% { transform: translate(0,0); }
+        }
+
+        .warning-text {
+            color: #fff;
+            margin: 20px 0;
+            line-height: 1.5;
+        }
+
+        .blink { animation: blinker 1.5s linear infinite; }
+        @keyframes blinker { 50% { opacity: 0; } }
+
+        a {
+            color: #ffcc00;
+            text-decoration: none;
+            border: 1px solid #ffcc00;
+            padding: 10px 20px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        a:hover {
+            background: #ffcc00;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="loading-screen">
+        <div class="spinner"></div>
+        <div id="status">ИНИЦИАЛИЗАЦИЯ ПОДКЛЮЧЕНИЯ К СЕТИ ДЫРОК...</div>
+        <div style="margin-top: 10px; font-size: 0.8em; opacity: 0.7;">
+            Ожидаемый отклик: <span id="timer">7066</span>ms
+        </div>
+    </div>
+
+    <div id="error-screen">
+        <p class="error-code glitch">404</p>
+        <h2>СИСТЕМНЫЙ СБОЙ</h2>
+        <div class="warning-text">
+            <p>ВНИМАНИЕ: На центральных <b>дырявых серверах</b> запрашиваемая информация не найдена.</p>
+            <p>Вероятно, данные были <span style="color: #f00;">безвозвратно утеряны</span> в ходе термической атаки Андырки или съедены при невыясненных обстоятельствах (подозрение падает на Гулим Сматулаевну).</p>
+        </div>
+        <p class="blink" style="font-size: 0.9em;">СВЯЗЬ ПРЕРВАНА. ПАКЕТЫ ДАННЫХ РАССЫПАЛИСЬ.</p>
+        
+        <a href="index.html">ВЕРНУТЬСЯ В БЕЗОПАСНЫЙ СЕКТОР</a>
+    </div>
+
+    <script>
+        const loadingTime = 7066;
+        const statusEl = document.getElementById('status');
+        
+        // Этапы изменения текста для атмосферности
+        setTimeout(() => { statusEl.innerText = "ПОИСК В ОБЛАКЕ ПАЛЕНКИ..."; }, 2000);
+        setTimeout(() => { statusEl.innerText = "ПРОВЕРКА АРХИВОВ АРОНРАШИДА..."; }, 4500);
+        setTimeout(() => { statusEl.innerText = "ОБНАРУЖЕНА КРИТИЧЕСКАЯ ДЫРА..."; }, 6000);
+
+        // Переключение экранов
+        setTimeout(() => {
+            document.getElementById('loading-screen').style.display = 'none';
+            document.getElementById('error-screen').style.display = 'block';
+            document.body.style.backgroundColor = "#050000"; // Немного меняем фон на тревожный
+        }, loadingTime);
+    </script>
+</body>
+</html>
