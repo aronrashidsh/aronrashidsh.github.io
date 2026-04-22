@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>АРХИВ 2026: МОБИЛЬНЫЙ СЕКТОР</title>
+    <style>
+        /* Базовые настройки для мобилок */
+        * { box-sizing: border-box; }
+        
+        body {
+            background-color: #000;
+            color: #ffcc00;
+            font-family: "Courier New", Courier, monospace;
+            margin: 0;
+            padding: 0;
+            word-wrap: break-word;
+        }
+
+        /* Экран загрузки */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .loading-text {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .progress-bar {
+            width: 80%;
+            max-width: 300px;
+            height: 6px;
+            border: 1px solid #ffcc00;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #ffcc00;
+            width: 0%;
+            animation: fillBar 4.075s linear forwards;
+        }
+
+        @keyframes fillBar {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        /* Контент */
+        #main-content {
+            display: none;
+            padding: 15px;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .header-box {
+            border: 3px double #ffcc00;
+            padding: 15px;
+            text-align: center;
+            margin-bottom: 30px;
+            background: #0a0a00;
+        }
+
+        h1 { font-size: 1.5rem; margin: 0; text-shadow: 2px 2px #440000; }
+        h2 { color: #fff; text-transform: uppercase; border-bottom: 1px solid #ffcc00; font-size: 1.2rem; margin-top: 30px; }
+
+        .image-container {
+            text-align: center;
+            margin: 25px 0;
+        }
+
+        .image-container img {
+            border: 3px solid #ffcc00;
+            width: 100%; /* Резиновая картинка */
+            height: auto;
+            box-shadow: 0 0 15px #ffcc00;
+        }
+
+        .content-text {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            text-align: left;
+            background: rgba(15, 15, 0, 0.9);
+            padding: 15px;
+            border-left: 3px solid #ffcc00;
+        }
+
+        .highlight { color: #fff; font-weight: bold; }
+        
+        .blink { animation: blinker 1s linear infinite; }
+        @keyframes blinker { 50% { opacity: 0; } }
+
+        .warning {
+            color: #f00;
+            border: 1px solid #f00;
+            padding: 10px;
+            text-align: center;
+            margin: 20px 0;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 0.75rem;
+            opacity: 0.7;
+            padding-bottom: 30px;
+        }
+
+        a { color: #ffcc00; text-decoration: none; border: 1px solid #ffcc00; padding: 4px 8px; display: inline-block; }
+
+        /* Адаптация под совсем маленькие экраны */
+        @media (max-width: 480px) {
+            h1 { font-size: 1.2rem; }
+            .header-box { padding: 10px; }
+            body { padding: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="loader">
+        <div class="loading-text" id="status">ПОДКЛЮЧЕНИЕ К СЕТИ ДЫРОК...</div>
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+        <p style="margin-top: 15px; font-size: 0.7rem;" class="blink">MOBILE_LINK_ESTABLISHED</p>
+    </div>
+
+    <div id="main-content">
+        <div class="header-box">
+            <h1>АНДЫРКА: ТЕРМАЛЬНЫЙ МАГНАТ</h1>
+            <p style="font-size: 0.8rem;">ОТЧЕТ: БАЗАР v2.0</p>
+        </div>
+
+        <div class="content-text">
+            <p>Когда великий Аронрашид изгнал Андырку из своего семейства, многие предрекали ему забвение. Но изгнание лишь распалило его внутренний огонь. Лишившись доступа к элитным подвалам, Андырка обосновался в секторе №14 центрального рынка. Там, среди запаха дешевой резины и чебуреков, он воздвиг свою империю «Адидас».</p>
+
+            <p>Сегодня Андырка — бесспорный король паленой обуви. Его кроссовки снабжены «дырками» для вентиляции и подошвой, способной плавиться при ходьбе, но выдерживать любой напор судьбы. Он торгует не просто обувью, а легендой, замешанной на китайском клее и личном жаре изгнанника.</p>
+
+            <h2>Жар и Трагедия Гулим</h2>
+            <p>Но главная сила Андырки — в его термодинамике. Помните, как <span class="highlight">Аскар подгорел</span> до корочки от одного присутствия Андырки? Этот жар стал его визитной карточкой. Именно на этот обжигающий свет слетается Гулим Сматулаевна — женщина с самой грустной судьбой в архиве.</p>
+        </div>
+
+        <div class="image-container">
+            <img src="g.jpeg" alt="Андырка">
+            <p style="color: #ffaa00; font-size: 0.7rem; margin-top: 5px;">[DATA_VISUAL: g.jpeg — БИЗНЕС-ПРОЦЕСС]</p>
+        </div>
+
+        <div class="content-text">
+            <p>Судьба Гулим чернее трех полосок на кроссовках. Говорят, однажды она от большой любви и одиночества <b>съела своего мужа</b>. С тех пор в её душе поселился вечный лед. Теперь она каждый день стоит у прилавка Андырки, впитывая тот самый жар, от которого когда-то мучился Аскар. Гулим верит: только термальная энергия Андырки способна растопить ту глыбу льда, что осталась в ней после того памятного ужина. Она ищет тепла, а Андырка просто продает ей десятую пару кед, поддерживая температуру её надежды на критическом уровне.</p>
+
+            <div class="warning">ВНИМАНИЕ: ОПАСНОСТЬ ТЕРМИЧЕСКОГО ОЖОГА ПРИ КОНТАКТЕ!</div>
+
+            <p>Так и живет этот базарный симбиоз: один выжигает конкурентов своим жаром, другая пытается этим жаром согреть свою трагическую пустоту. А Аскар всё еще чувствует, как у него «подгорает» каждый раз, когда на базаре совершается новая сделка.</p>
+        </div>
+
+        <div class="footer">
+            <hr style="border-color: #332200;">
+            <p>© 2026 Архив Безумных Племен</p>
+            <p><a href="andirka.html">НАЗАД В АРХИВ</a></p>
+        </div>
+    </div>
+
+    <script>
+        setTimeout(function() {
+            document.getElementById('loader').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+        }, 4075);
+
+        const statusText = document.getElementById('status');
+        setTimeout(() => { statusText.innerText = 'ПОИСК ТЕМПЕРАТУРЫ АСКАРА...'; }, 1500);
+        setTimeout(() => { statusText.innerText = 'СИНХРОНИЗАЦИЯ С ГУЛИМ...'; }, 3000);
+    </script>
+
+</body>
+</html>
