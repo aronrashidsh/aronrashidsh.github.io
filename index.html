@@ -7,26 +7,10 @@
     <title>Главный Архив: Семейство Аронрашидовых</title>
     <meta name="title" content="Главный Архив: Семейство Аронрашидовых">
     <meta name="description" content="Закрытый архив племен: иерархия Аронрашидовых, Шерхан, Адельханулы и хроники Андырки. Полный отчет системы.">
-    <meta name="keywords" content="Аронрашид, Аронарашид, Шерхан, Адельханулы, Aronrashid, penis, Байра, Турецкая борьба, Борьба под кроватью, sh30.09, архив племен, диктатор, хроники">
+    <meta name="keywords" content="Аронрашид, Аронарашид, Шерхан, Адельханулы, Aronrashid, Андырка, бизнес, адидас, Гулим, архив племен, диктатор, хроники">
     <meta name="robots" content="index, follow">
     <meta name="language" content="Russian">
-    <meta name="revisit-after" content="1 days">
     <meta name="author" content="ЦЕНТРАЛЬНЫЙ УЗЕЛ СВЯЗИ">
-
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://your-site-url.com/">
-    <meta property="og:title" content="Главный Архив: Семейство Аронрашидовых">
-    <meta property="og:description" content="Закрытые данные о внутренней иерархии, методах размножения и секретных идеях диктатора.">
-    <meta property="og:image" content="https://your-site-url.com/image.jpg">
-
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://your-site-url.com/">
-    <meta property="twitter:title" content="Главный Архив: Семейство Аронрашидовых">
-    <meta property="twitter:description" content="История великого предательства, кармы и финального пути к заветной канаве.">
-    <meta property="twitter:image" content="https://your-site-url.com/image.jpg">
-
-    <meta name="theme-color" content="#ffcc00">
-    <meta name="format-detection" content="telephone=no">
 
     <style>
         :root {
@@ -37,7 +21,6 @@
             --граница: #333333;
         }
 
-        /* Общие стили */
         body, html {
             margin: 0;
             padding: 0;
@@ -62,10 +45,13 @@
             align-items: center;
             z-index: 10000;
             color: var(--желтый);
+            text-align: center;
+            padding: 20px;
         }
 
         .прогресс-контейнер {
-            width: 300px;
+            width: 100%;
+            max-width: 300px;
             height: 30px;
             border: 2px solid var(--желтый);
             margin-top: 20px;
@@ -80,7 +66,7 @@
             transition: width 0.2s ease;
         }
 
-        /* Основной контент (скрыт изначально) */
+        /* Основной контент */
         #основной-контент {
             display: none; 
             padding: 20px;
@@ -90,7 +76,7 @@
 
         header {
             width: 100%;
-            padding: 60px 0;
+            padding: 40px 10px;
             background-color: rgba(0, 0, 0, 0.9);
             border-bottom: 5px solid var(--желтый);
             text-align: center;
@@ -100,27 +86,30 @@
         h1 {
             color: var(--желтый);
             text-transform: uppercase;
-            font-size: 2.5em;
+            font-size: 1.8em;
             margin: 0;
-            letter-spacing: 5px;
+            letter-spacing: 3px;
         }
 
         .сетка {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            width: 90%;
-            max-width: 1000px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
         .карточка {
             background-color: var(--фон-карточки);
             border: 1px solid var(--граница);
-            padding: 30px;
+            padding: 25px;
             text-decoration: none;
             color: var(--серый-текст);
             transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .карточка:hover {
@@ -132,18 +121,21 @@
         .карточка h2 {
             color: var(--желтый);
             text-transform: uppercase;
+            font-size: 1.2em;
             border-bottom: 1px solid var(--граница);
             padding-bottom: 10px;
+            margin-top: 0;
         }
 
         .кнопка {
             margin-top: 20px;
-            padding: 10px;
+            padding: 12px;
             background: var(--желтый);
             color: black;
             font-weight: bold;
             text-align: center;
             text-transform: uppercase;
+            font-size: 0.9em;
         }
 
         footer {
@@ -151,6 +143,12 @@
             padding: 50px;
             color: #444;
             font-size: 0.8em;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 480px) {
+            h1 { font-size: 1.4em; }
+            .карточка { padding: 15px; }
         }
     </style>
 </head>
@@ -171,15 +169,27 @@
 
         <div class="сетка">
             <a href="sh.html" class="карточка">
-                <h2>Семейство Аронрашидовых</h2>
-                <p>Закрытые данные о внутренней иерархии, методах размножения и секретных идеях диктатора.</p>
+                <div>
+                    <h2>Семейство Аронрашидовых</h2>
+                    <p>Закрытые данные о внутренней иерархии, методах размножения и секретных идеях диктатора.</p>
+                </div>
                 <div class="кнопка">Войти в систему</div>
             </a>
 
             <a href="andirka.html" class="карточка">
-                <h2>Хроники Андырки</h2>
-                <p>История великого предательства, кармы и финального пути к заветной канаве.</p>
+                <div>
+                    <h2>Хроники Андырки</h2>
+                    <p>История великого предательства, кармы и финального пути к заветной канаве.</p>
+                </div>
                 <div class="кнопка">Читать отчет</div>
+            </a>
+
+            <a href="business.html" class="карточка">
+                <div>
+                    <h2>Бизнес-Империя Андырки</h2>
+                    <p>Отчет о торговле паленым «Адидасом» на базаре и термальном воздействии на Гулим Сматулаевну.</p>
+                </div>
+                <div class="кнопка">Открыть филиал</div>
             </a>
         </div>
 
@@ -203,6 +213,10 @@
                 полоса.style.width = процент + '%';
                 
                 текстТаймера.innerText = `ИНИЦИАЛИЗАЦИЯ: ${секунд} сек.`;
+
+                // Меняем статус для атмосферности
+                if(секунд === 7) document.getElementById('status').innerText = "ОБХОД ЗАЩИТЫ АСКАРА...";
+                if(секунд === 4) document.getElementById('status').innerText = "ЗАГРУЗКА ПАЛЕНЫХ ДАННЫХ...";
 
                 if (секунд <= 0) {
                     clearInterval(интервал);
